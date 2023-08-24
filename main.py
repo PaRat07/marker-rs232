@@ -26,10 +26,13 @@ class Marker:
         time.sleep(0.5)
         print('Settings pen:', self.__read_from_marker())
 
-    def mark(self, file: str):
+    def open_doc(self, file: str):
         self.__write_to_marker('OpenDoc,' + file)
         print('OpenDoc:', self.__read_from_marker())
+
+    def mark(self, file: str):
         self.set_pen_parameter()
+        self.open_doc(file)
         self.__write_to_marker('StartMark')
         print('Start mark:', self.__read_from_marker())
         time.sleep(0.5)
