@@ -5,6 +5,7 @@ import time
 class Marker:
     def __write_to_marker(self, message):
         self.ser.write(bytes(message + ';;', 'utf-8'))
+        time.sleep(1)
 
     def __read_from_marker(self) -> str:
         ans = ""
@@ -15,7 +16,7 @@ class Marker:
 
         return ans
 
-    def __init__(self, port="COM5", timeout=0.1, badurate=115200):
+    def __init__(self, port="COM5", timeout=0.1, badurate=9600):
         self.ser = serial.Serial(port=port, timeout=timeout, baudrate=badurate)
 
     def __del__(self):
